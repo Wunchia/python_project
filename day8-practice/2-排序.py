@@ -4,7 +4,7 @@
 
 import random
 import time
-import sys
+
 class Sort:
     def __init__(self,n):
         self.len=n
@@ -18,3 +18,4 @@ class Sort:
 
 
 if __name__ == '__main__':
+    pass
