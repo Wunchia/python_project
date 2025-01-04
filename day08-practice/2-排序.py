@@ -122,6 +122,7 @@ class Sort:
             self.adjust_min_heap(0,cur_len)
             arr[0], arr[cur_len - 1] = arr[cur_len - 1], arr[0]
 
+    #计算耗时
     def count_time(self,sort_func,*args,**kwargs):
         start_time=time.time()
         sort_func(*args,**kwargs)
