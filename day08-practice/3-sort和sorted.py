@@ -20,8 +20,8 @@ print(my_list) #发生改变
 print('-'*50)
 
 student_tuples=[
-    ('John', 'F',15),
-    ('Jack', 'K',12),
+    ('John', 'F',11),
+    ('Jack', 'K',21),
     ('Amy', 'K',11),
 ]
 
@@ -41,3 +41,34 @@ class Student:
 
 student1=Student('Micheal',23,18)
 print(student1)
+
+student_objects=[
+    Student('Grace', 8, 13),
+    Student('Harry', 11, 16),
+    Student('Ivy', 9, 14)
+]
+print(sorted(student_objects,key=lambda student: (student.grade)))
+
+print('use operator')
+
+from operator import itemgetter #按下标取 可操作列表 元组
+from operator import attrgetter #按对象属性取
+
+print(sorted(student_tuples,key=itemgetter(2,1)))
+print(sorted(student_objects,key=attrgetter('grade','age'),reverse=True))
+
+my_dict={  #字典里套列表
+    'Li':['W',4],
+    'Wang':['L',3],
+    'Yang':['K',7]
+}
+print(sorted(my_dict.items(),key=lambda item:item[1][1]))
+
+test_list=[  #列表里套字典
+    {'name':'John','blood':20}
+    ,{'name':'Jack','blood':60}
+    ,{'name':'Amy','blood':11}
+]
+
+print(sorted(test_list,key=lambda x:x['blood']))
+print(sorted(test_list,key=itemgetter('name')))
