@@ -89,14 +89,59 @@ def split_group():
     (?P=name) 引用别名为name分组匹配到的字符串
     :return:
     """
+    ret=re.match(r"[1-9]?[0-9]|100",'9')
+    print(ret.group())
+    print('-' * 50)
+    ret = re.match(r"\w{4,20}@(163|126|qq)\.com", "test@qq.com")
+    print(ret.group())
+    ret = re.match(r"\w{4,20}@(163|126|qq)\.com", "test@126.com")
+    print(ret.group())
+    print('-' * 50)
+    ret = re.match(r"([^-]+)-(\d+)", "010-12345678")# 代表没有遇到小横杠 - 就一直进行匹配，一直匹配下去
+    print(ret.group())
+    print(ret.group(1))
+    print(ret.group(2))
+    print('-'*50)
+    labels = ["<html><h1>www.cskaoyan.com</h1></html>", "<html><h1>www.cskaoyan.com</h2></html>"]
+    for label in labels:
+        ret = re.match(r"<(?P<name1>\w*)><(?P<name2>\w*)>.*</(?P=name2)></(?P=name1)>", label)
+        if ret:
+            print("%s 是符合要求的标签" % ret.group())
+        else:
+            print("%s 不符合要求" % label)
 
 
 #re模块的高级用法
+def add(x):
+    result = x.group()
+    return str(int(result) + 100)
+
 def advanced_func():
-    pass
+    ret = re.search(r"\d+", "阅读次数为 9999,点赞888")
+    print(ret.group())
+    print('-' * 50)
+    ret = re.findall(r"\d+", "python = 9999, c = 7890, c++ = 12345")
+    print(ret)
+    print('-' * 50)
+    ret = re.sub(r"\d+", '998', "python = 997")
+    print(ret)
+    ret = re.sub(r"\d+", lambda x: str(int(x.group()) + 100), "python = 997")
+    print(ret)
+    ret = re.sub(r"\d+", add, "python = 997")
+    print(ret)
+    print('-' * 50)
+    # sub只替换前两个
+    text = "apple apple apple apple"
+    pattern = r"apple"
+    replacement = "orange"
+
+    new_text = re.sub(pattern, replacement, text, count=3)
+    print(new_text)
 
 if __name__ == '__main__':
     # easy_case()
     # single()
     # multi()
-    sta_end()
+    # sta_end()
+    # split_group()
+    advanced_func()
